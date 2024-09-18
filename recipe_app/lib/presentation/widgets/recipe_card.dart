@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/models/recipe.dart';
 
 class RecipeCard extends StatelessWidget {
-  final String title;
-  final String rating;
-  final String cookTime;
-  final String thumbnailUrl;
+  final Recipe recipe;
 
-  const RecipeCard({
-    super.key,
-    required this.cookTime,
-    required this.rating,
-    required this.thumbnailUrl,
-    required this.title,
-  });
+  const RecipeCard({super.key, required this.recipe});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +31,7 @@ class RecipeCard extends StatelessWidget {
               topRight: Radius.circular(10),
             ),
             child: Image.network(
-              thumbnailUrl,
+              recipe.images,
               height: 150,
               fit: BoxFit.cover,
             ),
@@ -54,7 +46,7 @@ class RecipeCard extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        title,
+                        recipe.name,
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -78,7 +70,7 @@ class RecipeCard extends StatelessWidget {
                               color: Colors.orange, size: 16),
                           const SizedBox(width: 4),
                           Text(
-                            rating,
+                            recipe.rating.toString(),
                             style: const TextStyle(color: Colors.orange),
                           ),
                         ],
@@ -97,7 +89,7 @@ class RecipeCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 5),
                     Text(
-                      cookTime,
+                      recipe.totalTime,
                       style: const TextStyle(
                         fontSize: 14,
                         color: Colors.black54,
